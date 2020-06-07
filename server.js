@@ -1,7 +1,8 @@
+//set requirements
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-var node = require("node");
 
+//create connection
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -9,3 +10,8 @@ var connection = mysql.createConnection({
     password: "password",
     database: "employees_db"
 });
+
+connection.connect(function(err) {
+    if (err) throw err;
+    runsearch();
+})

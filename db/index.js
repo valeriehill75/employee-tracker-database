@@ -6,21 +6,21 @@ class DB {
   }
 
 //Find all employees
-  findAllEmployees() {
+getAllEmployees() {
       return this.connection.query(
           "SELECT employee.name_id, employee.first_name, employee_name.last_name, roles.title, department.dept_name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = roles.id LEFT JOIN department on roles.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"
       );
   }
 
 //Find all roles
-  findAllRoles() {
+getAllRoles() {
     return this.connection.query(
         "SELECT roles.roles_id, roles.title, department.dept_name AS department, roles.salary FROM roles LEFT JOIN department on employee.role_id = roles.id LEFT JOIN department on roles.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"
     );
 }
 
 //Find all departments
-findAllDepartments() {
+getAllDepartments() {
     return this.connection.query(
         "SELECT department.id, department.dept_name AS department FROM employee LEFT JOIN roles on employee.name_id = roles.id LEFT JOIN department on roles.department_id = department.id GROUP BY department.id, department.dept_name;"
     );

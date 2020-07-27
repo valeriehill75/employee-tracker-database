@@ -182,6 +182,45 @@ async function addEmployee() {
   runPrompts();
 }
 
+async function updateEmployee() {
+  const employeeList = await db.getAllEmployees();
+
+  const employeeChoice = employeeList.map(({ id, first_name, last_name}) => ({
+    name: `${first_name} ${last_name}`,
+    value: id
+  }));
+
+  const { employeeId } = await prompt([
+    {
+      type: "list",
+      name: "employeeId",
+      message: "Which employee's role do you wish to update?",
+      choices: employeeChoice
+    }
+  ]);
+
+  const roleList = await db.getAllRoles();
+
+  const roleChoice = roleList.map(({ id, title }) => ({
+    name: title,
+    value: id
+  }));
+
+  const { rolesId } = await prompt([
+    {
+      type: "list",
+      name: "rolesId",
+      message: "What is the employee's new role?",
+      choices: roleChoice
+    }
+  ]);
+
+  await db.updateEmployee(employeeId, rolesId);
+
+  console.log("Your employee's role is updated!");
+  runPrompts();
+}
+
 function endApp() {
   process.exit();
 }

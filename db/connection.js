@@ -2,7 +2,7 @@ const mysql = require("mysql");
 const util = require("util");
 
 //create connection
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -15,5 +15,6 @@ connection.connect(function(err) {
 
 });
 
-connection.query = util.promisify(connection.query)
-module.exports = connection
+connection.query = util.promisify(connection.query);
+
+module.exports = connection;

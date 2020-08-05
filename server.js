@@ -41,6 +41,10 @@ async function runPrompts() {
         {
           name: "Update Employee",
           value: "update_employee",
+        },
+        {
+          name: "Quit",
+          value: "QUIT"
         }
       ]
     }
@@ -94,13 +98,13 @@ async function viewDepartments() {
 
 async function addRole() {
   const department = await db.getAllDepartments();
-  const deptartmentChoice = department.map(({ id, dept_name }) => ({
-    name: dept_name,
+  const deptartmentChoice = department.map(({ id, name }) => ({
+    name: name,
     value: id
   }));
   const add_role = await prompt([
     {
-      name: "role_title",
+      name: "title",
       message: "What is the name of the role?"
     },
     {
@@ -108,8 +112,8 @@ async function addRole() {
       message: "What is the salary of this role?"
     },
     {
-      type: "dept_list",
-      name: "id",
+      type: "list",
+      name: "department_id",
       message: "To which department does this role belong?",
       choices: deptartmentChoice
     }
@@ -133,10 +137,11 @@ async function addDepartment() {
 }
 
 async function addEmployee() {
-  const employeeList = await db.getAllEmployees();
   const roleList = await db.getAllRoles();
+  const employeeList = await db.getAllEmployees();
+  
 
-  const new_employee = await prompt([
+  const employee = await prompt([
     {
       name: "first_name",
       message: "What is the employee's first name?"
@@ -147,7 +152,7 @@ async function addEmployee() {
     }
   ]);
 
-  const roleChoice = roleList.map(({ roles_id, title }) => ({
+  const roleChoice = roleList.map(({ id, title }) => ({
     name: title,
     value: id
   }));
@@ -176,7 +181,7 @@ async function addEmployee() {
 
   employee.manager_id = managerId;
 
-  await db.createEmployee(new_employee);
+  await db.createEmployee(employee);
 
   console.log("Employee Added!");
   runPrompts();

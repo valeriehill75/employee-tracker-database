@@ -4,14 +4,14 @@ VALUES
     ("Production"),
     ("Purchasing"),
     ("Customer Service"),
-    ("Shipping")
+    ("Shipping"),
     ("Sales");
 
 INSERT INTO roles (title, salary, id)
 VALUES
     ("Printer", 40000, 06),
     ("Purchaser", 45000, 05),
-    ("Customer Service Rep", 35000 04),
+    ("Customer Service Rep", 35000, 04),
     ("Shipper", 20000, 03),
     ("Sales Agent", 65000, 02),
     ("Manager", 75000, 01);
@@ -23,6 +23,4 @@ VALUES
     ("Stephanie", "Horner", 05, 01),
     ("Deana", "McEwan", 03, NULL),
     ("Dana", "Lomsheck", 02, NULL),
-    ("Ben", "Hess" 01, NULL);
-
-
+    ("Ben", "Hess", 01, NULL);

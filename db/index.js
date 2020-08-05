@@ -22,7 +22,7 @@ class DB {
     //Find all departments
     getAllDepartments() {
         return this.connection.query(
-            "SELECT department.id, department.name SUM(role.salary) AS budget FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id GROUP BY department.id, department.name;"
+            "SELECT department.id, department.name FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id GROUP BY department.id, department.name;"
         );
     }
 

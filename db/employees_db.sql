@@ -7,30 +7,30 @@ USE employees_db;
 CREATE TABLE department
 (
 	id INT NOT NULL AUTO_INCREMENT,
-	dept_name VARCHAR(30) UNIQUE NOT NULL,
+	name VARCHAR(30) UNIQUE NOT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE roles
+CREATE TABLE role
 (
-	roles_id INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
 	title VARCHAR(30) NOT NULL,
 	salary DECIMAL (10, 4) NOT NULL,
 	department_id INT NOT NULL,
-	PRIMARY KEY (roles_id)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE employee
 (
-    name_id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT NULL,
-    PRIMARY KEY (name_id)
+    PRIMARY KEY (id)
 );
 
-INSERT INTO department (dept_name)
+INSERT INTO department (name)
 VALUES
     ("Production"),
     ("Purchasing"),
@@ -38,7 +38,7 @@ VALUES
     ("Shipping"),
     ("Sales");
 
-INSERT INTO roles (title, salary, roles_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
     ("Printer", 40000, 06),
     ("Purchaser", 45000, 05),
@@ -49,9 +49,9 @@ VALUES
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-    ("Pete", "Howell", 06, 01),
-    ("Jennifer", "Clarkson", 04, 01),
-    ("Stephanie", "Horner", 05, 01),
-    ("Deana", "McEwan", 03, NULL),
-    ("Dana", "Lomsheck", 02, NULL),
-    ("Ben", "Hess", 01, NULL);
+    ("Pete", "Howell", 01, 01),
+    ("Jennifer", "Clarkson", 02, 01),
+    ("Stephanie", "Horner", 03, 01),
+    ("Deana", "McEwan", 04, NULL),
+    ("Dana", "Lomsheck", 05, NULL),
+    ("Ben", "Hess", 06, NULL);
